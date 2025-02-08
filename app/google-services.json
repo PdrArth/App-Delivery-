@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "857092077574",
+    "project_id": "appdeliviry",
+    "storage_bucket": "appdeliviry.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:857092077574:android:a4cee30695e47aeee62b87",
+        "android_client_info": {
+          "package_name": "com.pdrarth.deliviryapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD_ujC5LDO0wFOk_3hoBUOoJPOompsoF0s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

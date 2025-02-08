@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:icon="@drawable/ic_menu_24"
+        android:title=""
+        app:showAsAction="always">
+
+        <menu>
+
+            <item
+                android:id="@+id/person"
+                android:icon="@drawable/ic_person"
+                android:title="Perfil"
+                app:showAsAction="never" />
+            <item
+                android:id="@+id/pedidos"
+                android:icon="@drawable/ic_cart"
+                android:title="Pedidos"
+                app:showAsAction="never" />
+            <item
+                android:id="@+id/deslogar"
+                android:icon="@drawable/ic_logout"
+                android:title="Sair da Seção"
+                app:showAsAction="never" />
+
+
+        </menu>
+
+
+    </item>
+</menu>

@@ -1,0 +1,10 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="Base.Theme.DeliviryApp" parent="Theme.AppCompat.DayNight.DarkActionBar">
+        <!-- Customize your light theme here. -->
+        <item name="colorPrimary">@color/dark_red</item>
+        <item name="android:statusBarColor">@color/dark_red</item>
+
+    </style>
+
+    <style name="Theme.DeliviryApp" parent="Base.Theme.DeliviryApp" />
+</resources>
