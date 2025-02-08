@@ -41,6 +41,8 @@ public class Edit_User extends AppCompatActivity {
                 if (value != null) {
                     nome_usuario.setText(value.getString("nome"));
                     email_usuario.setText(email);
+
+
                 }
             }
         });
