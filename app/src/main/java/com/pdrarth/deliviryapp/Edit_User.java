@@ -1,6 +1,8 @@
 package com.pdrarth.deliviryapp;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -24,6 +26,12 @@ public class Edit_User extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_user);
         Components();
+        edit_user.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                EditProfile();
+            }
+        });
     }
     @Override
     protected void onStart() {
@@ -47,8 +55,14 @@ public class Edit_User extends AppCompatActivity {
             }
         });
     }
+    public void EditProfile(){
+        Intent intent = new Intent(Edit_User.this,Atualizar_Dados.class);
+        startActivity(intent);
+
+    }
     public void Components() {
         nome_usuario = findViewById(R.id.name_user);
         email_usuario = findViewById(R.id.name_email);
+        edit_user = findViewById(R.id.edit_info);
     }
 }

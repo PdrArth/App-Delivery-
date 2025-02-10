@@ -15,6 +15,9 @@
         android:theme="@style/Theme.DeliviryApp"
         tools:targetApi="31">
         <activity
+            android:name=".Atualizar_Dados"
+            android:exported="false" />
+        <activity
             android:name=".Edit_User"
             android:exported="false" />
         <activity
