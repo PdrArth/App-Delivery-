@@ -26,12 +26,7 @@ public class Edit_User extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_user);
         Components();
-        edit_user.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                EditProfile();
-            }
-        });
+        edit_user.setOnClickListener(view -> EditProfile());
     }
     @Override
     protected void onStart() {
@@ -43,15 +38,12 @@ public class Edit_User extends AppCompatActivity {
         String email = FirebaseAuth.getInstance().getCurrentUser().getEmail();
 
         DocumentReference documentReference = db.collection("Usuarios").document(usuario_id);
-        documentReference.addSnapshotListener(new EventListener<DocumentSnapshot>() {
-            @Override
-            public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
-                if (value != null) {
-                    nome_usuario.setText(value.getString("nome"));
-                    email_usuario.setText(email);
+        documentReference.addSnapshotListener((value, error) -> {
+            if (value != null) {
+                nome_usuario.setText(value.getString("nome"));
+                email_usuario.setText(email);
 
 
-                }
             }
         });
     }

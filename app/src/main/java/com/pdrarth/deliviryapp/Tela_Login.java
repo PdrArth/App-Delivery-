@@ -61,23 +61,20 @@ public class Tela_Login extends AppCompatActivity {
         String  nomeusuario = nome.getText().toString();
         String  senhausuario = senha.getText().toString();
 
-        FirebaseAuth.getInstance().signInWithEmailAndPassword(nomeusuario, senhausuario).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-            if(task.isSuccessful()){
-                    ProgressBar();
+        FirebaseAuth.getInstance().signInWithEmailAndPassword(nomeusuario, senhausuario).addOnCompleteListener(task -> {
+        if(task.isSuccessful()){
+                ProgressBar();
+        }
+        else {
+            String error;
+            try {
+                throw task.getException();
             }
-            else {
-                String error;
-                try {
-                    throw task.getException();
-                }
-                catch (Exception e){
-                    error = "Error ao logar usuario";
-                }
-                mensagem_error.setText(error);
+            catch (Exception e){
+                error = "Error ao logar usuario";
             }
-            }
+            mensagem_error.setText(error);
+        }
         });
 
     }
@@ -88,12 +85,7 @@ public class Tela_Login extends AppCompatActivity {
     }
     public void ProgressBar(){
         progressBar.setVisibility(View.VISIBLE);
-        new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                Tela_Produts();
-            }
-        },3000);
+        new Handler(Looper.getMainLooper()).postDelayed(() -> Tela_Produts(),3000);
     }
     public void Components(){
 

@@ -122,38 +122,30 @@ public class Tela_Cadastro extends AppCompatActivity {
         String senha = cadastrar_senha.getText().toString();
 
 
-        FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, senha).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful()) {
-                    SalvarNome();
-                    Snackbar snackbar = Snackbar.make(v, "Cadastro Realizado com Sucesso", Snackbar.LENGTH_INDEFINITE)
-                            .setAction("ok", new View.OnClickListener() {
-                                @Override
-                                public void onClick(View view) {
-                                    finish();
-                                }
-                            });
-                    snackbar.show();
+        FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, senha).addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                SalvarNome();
+                Snackbar snackbar = Snackbar.make(v, "Cadastro Realizado com Sucesso", Snackbar.LENGTH_INDEFINITE)
+                        .setAction("ok", view -> finish());
+                snackbar.show();
 
-                } else {
-                    String error = "";
-                    try {
-                        throw task.getException();
-                    } catch (FirebaseAuthWeakPasswordException e) {
-                        error = "Senha com menor de 6 caracteres";
-                    } catch (FirebaseAuthInvalidCredentialsException e) {
-                        error = "Email invalido";
-                    } catch (FirebaseAuthUserCollisionException e) {
-                        error = "Usuario ja cadastro";
-                    } catch (FirebaseNetworkException e) {
-                        error = "Sem conexao";
-                    } catch (Exception e) {
-                        error = "Error ao cadastar";
-                    }
-                    texto_Error.setText(error);
-
+            } else {
+                String error = "";
+                try {
+                    throw task.getException();
+                } catch (FirebaseAuthWeakPasswordException e) {
+                    error = "Senha com menor de 6 caracteres";
+                } catch (FirebaseAuthInvalidCredentialsException e) {
+                    error = "Email invalido";
+                } catch (FirebaseAuthUserCollisionException e) {
+                    error = "Usuario ja cadastro";
+                } catch (FirebaseNetworkException e) {
+                    error = "Sem conexao";
+                } catch (Exception e) {
+                    error = "Error ao cadastar";
                 }
+                texto_Error.setText(error);
+
             }
         });
     }
@@ -168,17 +160,9 @@ public class Tela_Cadastro extends AppCompatActivity {
         usuasioID = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
         DocumentReference documentReference = db.collection("Usuarios").document(usuasioID);
-        documentReference.set(usuarios).addOnSuccessListener(new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void unused) {
-                Log.i("Sucesso", "onSuccess: ");
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Log.i("Error", "onFailure: ");
-            }
-        });
+        documentReference.set(usuarios).
+                addOnSuccessListener(unused -> Log.i("Sucesso", "onSuccess: ")).
+                addOnFailureListener(e -> Log.i("Error", "onFailure: "));
 
     }
 
@@ -191,12 +175,12 @@ public class Tela_Cadastro extends AppCompatActivity {
 //                    @Override
 //                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
 //                        reference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+//                            @Overridew OnFailureListener() {
 //                            @Override
 //                            public void onSuccess(Uri uri) {
 //                                Log.i("Sucesso ", url_image.toString());
 //                            }
-//                        }).addOnFailureListener(new OnFailureListener() {
-//                            @Override
+//                        }).addOnFailureListener(ne
 //                            public void onFailure(@NonNull Exception e) {
 //                            }
 //                        });

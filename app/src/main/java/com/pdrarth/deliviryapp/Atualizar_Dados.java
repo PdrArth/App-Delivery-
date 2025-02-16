@@ -79,18 +79,10 @@ public class Atualizar_Dados extends AppCompatActivity {
         String usuasioID = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
         DocumentReference documentReference = db.collection("Usuarios").document(usuasioID);
-        documentReference.update("nome",  nomeusuario).addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                Snackbar snackbar = Snackbar.make(view, "Nome Atualizado com sucesso", Snackbar.LENGTH_INDEFINITE)
-                        .setAction("ok", new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                finish();
-                            }
-                        });
-                snackbar.show();
-            }
+        documentReference.update("nome",  nomeusuario).addOnCompleteListener(task -> {
+            Snackbar snackbar = Snackbar.make(view, "Nome Atualizado com sucesso", Snackbar.LENGTH_INDEFINITE)
+                    .setAction("ok", view1 -> finish());
+            snackbar.show();
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {

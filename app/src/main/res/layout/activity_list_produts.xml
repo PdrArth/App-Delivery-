@@ -7,4 +7,10 @@
     android:layout_height="match_parent"
     tools:context=".List_Produts">
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerview_list_produts"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </androidx.recyclerview.widget.RecyclerView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
